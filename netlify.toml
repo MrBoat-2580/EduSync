@@ -1,0 +1,5 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# SPA redirects are handled by public/_redirects already.
