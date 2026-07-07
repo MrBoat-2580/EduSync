@@ -46,6 +46,8 @@ terminal reports.
 - Deleting a class sets enrolled students' class_id to null (keeps student records).
 */
 
+CREATE EXTENSION IF NOT EXISTS pgcrypto;
+
 CREATE TABLE IF NOT EXISTS classes (
   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   name text NOT NULL,
