@@ -3,14 +3,52 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --accent-50: #eef2ff;
+    --accent-100: #e0e7ff;
+    --accent-200: #c7d2fe;
+    --accent-400: #818cf8;
+    --accent-500: #6366f1;
+    --accent-600: #4f46e5;
+    --accent-700: #4338ca;
+  }
+
   html {
     scroll-behavior: smooth;
   }
   body {
     @apply bg-ink-50 text-ink-900 font-sans antialiased;
   }
+  body.theme-emerald {
+    --accent-50: #ecfdf5;
+    --accent-100: #d1fae5;
+    --accent-200: #a7f3d0;
+    --accent-400: #34d399;
+    --accent-500: #10b981;
+    --accent-600: #059669;
+    --accent-700: #047857;
+  }
+  body.theme-violet {
+    --accent-50: #f5f3ff;
+    --accent-100: #ede9fe;
+    --accent-200: #ddd6fe;
+    --accent-400: #8b5cf6;
+    --accent-500: #7c3aed;
+    --accent-600: #6d28d9;
+    --accent-700: #5b21b6;
+  }
+  body.theme-amber {
+    --accent-50: #fffbeb;
+    --accent-100: #fef3c7;
+    --accent-200: #fde68a;
+    --accent-400: #f59e0b;
+    --accent-500: #d97706;
+    --accent-600: #b45309;
+    --accent-700: #92400e;
+  }
   ::selection {
-    @apply bg-brand-500 text-white;
+    background-color: var(--accent-500);
+    color: white;
   }
 }
 
@@ -28,7 +66,9 @@
     @apply flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-ink-500 transition-colors hover:bg-ink-100 hover:text-ink-900;
   }
   .nav-link-active {
-    @apply bg-brand-50 text-brand-700 hover:bg-brand-50 hover:text-brand-700;
+    background-color: var(--accent-50);
+    color: var(--accent-700);
+    @apply hover:bg-[color:var(--accent-50)] hover:text-[color:var(--accent-700)];
   }
 }
 

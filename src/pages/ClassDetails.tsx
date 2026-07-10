@@ -10,6 +10,7 @@ import { fetchStudentsByClass, fetchClasses, createStudent } from '../lib/api';
 import type { StudentWithClass, ClassWithCount } from '../lib/supabase';
 import { useRouter } from '../hooks/useRouter';
 import { useToast } from '../hooks/useToast';
+import { classLevelLabel } from '../utils/academic';
 
 type ClassDetailsProps = {
   id: string;
@@ -100,7 +101,7 @@ export default function ClassDetails({ id }: ClassDetailsProps) {
 
       <PageHeader
         title={classInfo.name}
-        description={`${classInfo.code} · Grade ${classInfo.grade_level} · ${classInfo.instructor}`}
+        description={`${classInfo.code} · ${classLevelLabel(classInfo.grade_level)} · ${classInfo.instructor}`}
         actions={
           <Button onClick={() => setModalOpen(true)}>
             <UserPlus className="h-4 w-4" />

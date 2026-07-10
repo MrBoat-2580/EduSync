@@ -178,7 +178,7 @@ export default function StudentDetails({ id }: StudentDetailsProps) {
             <p className="flex items-center gap-2">
               <BookOpen className="h-4 w-4 text-ink-400" />
               {student.class
-                ? `${student.class.code} — ${student.class.name} (Grade ${student.class.grade_level})`
+                ? `${student.class.code} — ${student.class.name} (${classLevelLabel(student.class.grade_level)})`
                 : 'No class assigned'}
             </p>
           </div>

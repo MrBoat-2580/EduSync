@@ -1,5 +1,6 @@
-import { GraduationCap, BookOpen, Users, FileText, LayoutDashboard } from 'lucide-react';
+import { GraduationCap, BookOpen, Users, FileText, LayoutDashboard, Settings } from 'lucide-react';
 import { useRouter, type Route } from '../hooks/useRouter';
+import { useSchoolSettings } from '../context/SchoolSettings';
 
 const items: { label: string; route: Route; icon: typeof LayoutDashboard }[] = [
   { label: 'Home', route: { name: 'dashboard' }, icon: LayoutDashboard },
@@ -10,6 +11,7 @@ const items: { label: string; route: Route; icon: typeof LayoutDashboard }[] = [
 
 export default function MobileNav() {
   const { route, navigate } = useRouter();
+  const { schoolName, openSettings } = useSchoolSettings();
   const isActive = (r: Route) => {
     if (r.name === 'classes' && (route.name === 'class' || route.name === 'classes')) return true;
     if (r.name === 'students' && (route.name === 'student' || route.name === 'students')) return true;
@@ -23,7 +25,7 @@ export default function MobileNav() {
           <div className="grid h-8 w-8 place-items-center rounded-lg bg-gradient-to-br from-brand-500 to-brand-700 text-white">
             <GraduationCap className="h-4 w-4" />
           </div>
-          <span className="display text-base font-bold text-ink-900">TRINITY EDUCATIONAL COMPLEX</span>
+          <span className="display text-base font-bold text-ink-900">{schoolName}</span>
         </div>
         <nav className="flex gap-1">
           {items.map(({ label, route: r, icon: Icon }) => (
@@ -38,6 +40,13 @@ export default function MobileNav() {
               <Icon className="h-[18px] w-[18px]" strokeWidth={1.75} />
             </button>
           ))}
+          <button
+            onClick={openSettings}
+            className="grid h-9 w-9 place-items-center rounded-lg text-ink-500 transition-colors hover:bg-ink-100"
+            aria-label="Settings"
+          >
+            <Settings className="h-[18px] w-[18px]" strokeWidth={1.75} />
+          </button>
         </nav>
       </div>
     </div>

@@ -1,5 +1,6 @@
-import { GraduationCap, LayoutDashboard, BookOpen, Users, FileText } from 'lucide-react';
+import { GraduationCap, LayoutDashboard, BookOpen, Users, FileText, Settings } from 'lucide-react';
 import { useRouter, type Route } from '../hooks/useRouter';
+import { useSchoolSettings } from '../context/SchoolSettings';
 
 const navItems: { label: string; route: Route; icon: typeof LayoutDashboard }[] = [
   { label: 'Dashboard', route: { name: 'dashboard' }, icon: LayoutDashboard },
@@ -10,6 +11,7 @@ const navItems: { label: string; route: Route; icon: typeof LayoutDashboard }[] 
 
 export default function Navbar() {
   const { route, navigate } = useRouter();
+  const { schoolName, openSettings } = useSchoolSettings();
 
   const isActive = (r: Route) => {
     if (r.name === 'classes' && (route.name === 'class' || route.name === 'classes')) return true;
@@ -24,7 +26,7 @@ export default function Navbar() {
           <GraduationCap className="h-5 w-5" />
         </div>
         <div>
-          <p className="display text-lg font-bold text-ink-900">TRINITY EDUCATIONAL COMPLEX</p>
+          <p className="display text-lg font-bold text-ink-900">{schoolName}</p>
           <p className="text-[11px] font-medium uppercase tracking-wider text-ink-400">
             Admin Panel
           </p>
@@ -47,16 +49,22 @@ export default function Navbar() {
         ))}
       </nav>
 
-      <div className="rounded-xl border border-ink-200/70 bg-ink-50 p-3">
-        <div className="flex items-center gap-3">
-          <div className="grid h-9 w-9 place-items-center rounded-full bg-brand-600 text-sm font-semibold text-white">
-            AD
+      <div className="space-y-2">
+        <button
+          onClick={openSettings}
+          className="flex w-full items-center justify-between rounded-xl border border-ink-200/70 bg-ink-50 px-3 py-3 text-left transition-colors hover:bg-ink-100"
+        >
+          <div className="flex items-center gap-3">
+            <div className="grid h-9 w-9 place-items-center rounded-full bg-brand-600 text-sm font-semibold text-white">
+              AD
+            </div>
+            <div className="min-w-0">
+              <p className="truncate text-sm font-semibold text-ink-900">Admin</p>
+              <p className="truncate text-xs text-ink-500">Administrator</p>
+            </div>
           </div>
-          <div className="min-w-0">
-            <p className="truncate text-sm font-semibold text-ink-900">Admin</p>
-            <p className="truncate text-xs text-ink-500">Administrator</p>
-          </div>
-        </div>
+          <Settings className="h-4 w-4 text-ink-500" />
+        </button>
       </div>
     </aside>
   );

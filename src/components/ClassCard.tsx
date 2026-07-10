@@ -1,6 +1,7 @@
 import { Users, ChevronRight } from 'lucide-react';
 import type { ClassWithCount } from '../lib/supabase';
 import { useRouter } from '../hooks/useRouter';
+import { classLevelLabel } from '../utils/academic';
 
 type ClassCardProps = {
   classItem: ClassWithCount;
@@ -19,7 +20,7 @@ export default function ClassCard({ classItem }: ClassCardProps) {
       <div className="flex items-start justify-between">
         <div>
           <span className="text-xs font-semibold uppercase tracking-wider text-brand-600">
-            {classItem.code} · Grade {classItem.grade_level}
+            {classItem.code} · {classLevelLabel(classItem.grade_level)}
           </span>
           <h3 className="display mt-1 font-semibold leading-snug text-ink-900">
             {classItem.name}

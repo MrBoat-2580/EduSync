@@ -1,9 +1,11 @@
 import { RouterProvider, useRouter } from './hooks/useRouter';
 import { ToastProvider } from './hooks/useToast';
+import { SchoolSettingsProvider } from './context/SchoolSettings';
 import Navbar from './components/Navbar';
 import MobileNav from './components/MobileNav';
 import Footer from './components/Footer';
 import ToastViewport from './components/ToastViewport';
+import SettingsModal from './components/SettingsModal';
 import Dashboard from './pages/Dashboard';
 import Classes from './pages/Classes';
 import ClassDetails from './pages/ClassDetails';
@@ -32,20 +34,23 @@ function CurrentPage() {
 
 export default function App() {
   return (
-    <ToastProvider>
-      <RouterProvider>
-        <div className="flex min-h-screen bg-ink-50">
-          <Navbar />
-          <div className="flex min-w-0 flex-1 flex-col">
-            <MobileNav />
-            <main className="flex-1 px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
-              <CurrentPage />
-            </main>
-            <Footer />
+    <SchoolSettingsProvider>
+      <ToastProvider>
+        <RouterProvider>
+          <div className="flex min-h-screen bg-ink-50">
+            <Navbar />
+            <div className="flex min-w-0 flex-1 flex-col">
+              <MobileNav />
+              <main className="flex-1 px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
+                <CurrentPage />
+              </main>
+              <Footer />
+            </div>
           </div>
-        </div>
-        <ToastViewport />
-      </RouterProvider>
-    </ToastProvider>
+          <ToastViewport />
+          <SettingsModal />
+        </RouterProvider>
+      </ToastProvider>
+    </SchoolSettingsProvider>
   );
 }

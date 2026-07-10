@@ -13,7 +13,7 @@ import {
   deleteStudent,
 } from '../lib/api';
 import type { StudentWithClass, ClassRow } from '../lib/supabase';
-import { statusStyles } from '../utils/academic';
+import { classLevelLabel, statusStyles } from '../utils/academic';
 import { useRouter } from '../hooks/useRouter';
 import { useToast } from '../hooks/useToast';
 
@@ -199,7 +199,7 @@ export default function Students() {
                         {s.class ? (
                           <span>
                             {s.class.code}
-                            <span className="block text-xs text-ink-400">Grade {s.class.grade_level}</span>
+                            <span className="block text-xs text-ink-400">{classLevelLabel(s.class.grade_level)}</span>
                           </span>
                         ) : (
                           <span className="text-ink-400">Unassigned</span>
@@ -311,7 +311,7 @@ export default function Students() {
                 .sort((a, b) => a.grade_level - b.grade_level)
                 .map((c) => (
                   <option key={c.id} value={c.id}>
-                    {c.code} — {c.name} (Grade {c.grade_level})
+                    {c.code} — {c.name} ({classLevelLabel(c.grade_level)})
                   </option>
                 ))}
             </select>

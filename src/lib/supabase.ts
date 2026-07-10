@@ -1,15 +1,13 @@
 import { createClient } from '@supabase/supabase-js';
 
-const url = import.meta.env.VITE_SUPABASE_URL;
-const anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
-
-if (!url || !anonKey) {
-  throw new Error('Missing Supabase env vars. Check VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY.');
-}
+const url = import.meta.env.VITE_SUPABASE_URL ?? 'http://localhost:54321';
+const anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY ?? 'local-anon-key';
 
 export const supabase = createClient(url, anonKey, {
   auth: { persistSession: false },
 });
+
+export const isSupabaseConfigured = Boolean(import.meta.env.VITE_SUPABASE_URL && import.meta.env.VITE_SUPABASE_ANON_KEY);
 
 // Database row types — mirror the schema in src/data/types.ts.
 export type ClassRow = {
@@ -19,6 +17,14 @@ export type ClassRow = {
   instructor: string;
   grade_level: number;
   capacity: number;
+  created_at: string;
+};
+
+export type SubjectRow = {
+  id: string;
+  name: string;
+  instructor: string;
+  class_level: number;
   created_at: string;
 };
 

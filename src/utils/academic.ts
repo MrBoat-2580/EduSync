@@ -63,9 +63,21 @@ export function statusStyles(status: string): string {
   }
 }
 
-// Grade level display label.
+// School level display label.
+export function classLevelLabel(level: number): string {
+  if (level === 1) return 'Nursery 1';
+  if (level === 2) return 'Nursery 2';
+  if (level === 3) return 'Kindergarten 1';
+  if (level === 4) return 'Kindergarten 2';
+  if (level >= 5 && level <= 10) return `Primary ${level - 4}`;
+  if (level === 11) return 'JHS 1';
+  if (level === 12) return 'JHS 2';
+  if (level === 13) return 'JHS 3';
+  return `Level ${level}`;
+}
+
 export function gradeLabel(level: number): string {
-  return `Grade ${level}`;
+  return classLevelLabel(level);
 }
 
 // Group scores by term.

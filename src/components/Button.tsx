@@ -10,7 +10,8 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 };
 
 const variantClasses: Record<Variant, string> = {
-  primary: 'bg-brand-600 text-white hover:bg-brand-700 border border-brand-600',
+  primary:
+    'bg-[color:var(--accent-600)] text-white hover:bg-[color:var(--accent-700)] border border-[color:var(--accent-600)]',
   outline:
     'bg-white text-ink-700 border border-ink-200 hover:bg-ink-50 hover:border-ink-300',
   ghost: 'bg-transparent text-ink-600 hover:bg-ink-100 border border-transparent',
@@ -32,7 +33,7 @@ export default function Button({
 }: ButtonProps) {
   return (
     <button
-      className={`inline-flex items-center justify-center gap-2 rounded-xl font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ${variantClasses[variant]} ${sizeClasses[size]} ${className}`}
+      className={`inline-flex items-center justify-center gap-2 rounded-xl font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--accent-400)] focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ${variantClasses[variant]} ${sizeClasses[size]} ${className}`}
       {...rest}
     >
       {children}
